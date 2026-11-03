@@ -1,0 +1,53 @@
+<view class="page">
+  <!-- 纪念日 -->
+  <view class="card">
+    <view class="card-title">我们的日子</view>
+
+    <view wx:if="{{nextDate}}" class="next">
+      <view class="next-left">{{nextDate.text}}</view>
+      <view class="next-title">{{nextDate.title}}<text wx:if="{{nextDate.timesText}}" class="next-times"> · {{nextDate.timesText}}</text></view>
+    </view>
+
+    <view wx:for="{{dates}}" wx:key="id" class="date-row {{item.isNext ? 'is-next' : ''}}">
+      <view class="date-info" data-id="{{item.id}}" bindtap="editMode">
+        <view class="date-title">{{item.title}}<text wx:if="{{item.isNext}}" class="near">最近</text></view>
+        <view class="date-sub muted small-text">{{item.dateText}}<text wx:if="{{item.timesText}}" class="times">· {{item.timesText}}</text></view>
+      </view>
+      <view class="date-right">
+        <text class="date-left {{item.past ? 'past' : ''}}">{{item.text}}</text>
+        <text wx:if="{{item.sinceText}}" class="date-since">{{item.sinceText}}</text>
+      </view>
+      <text class="date-del" data-id="{{item.id}}" bindtap="delDate">删除</text>
+    </view>
+
+    <view wx:if="{{dates.length === 0}}" class="muted small-text empty">还没记日子。生日、在一起那天、下次见面，都可以记</view>
+
+    <view class="muted small-text mode-tip">先选算法再记；已经记下的日子，点一下也能改</view>
+    <view class="mode-row">
+      <view wx:for="{{modes}}" wx:key="id" class="mode-item {{mode === item.id ? 'on' : ''}}"
+            data-id="{{item.id}}" bindtap="pickMode">
+        <view class="mode-name">{{item.name}}</view>
+        <view class="mode-desc">{{item.desc}}</view>
+      </view>
+    </view>
+
+    <picker mode="date" bindchange="pickDate">
+      <view class="btn-ghost add-btn">＋ 记一个日子</view>
+    </picker>
+  </view>
+
+  <!-- 时光轴 -->
+  <view class="card">
+    <view class="card-title">时光轴</view>
+    <view wx:if="{{events.length === 0}}" class="muted small-text empty">
+      {{loading ? '加载中' : '还没有故事。去种菜、答题、埋纸条，这里会自己长出来'}}
+    </view>
+    <view wx:for="{{events}}" wx:key="at" class="ev">
+      <view class="ev-dot {{item.tone}}"></view>
+      <view class="ev-body">
+        <view class="ev-text">{{item.text}}</view>
+        <view class="ev-time muted small-text">{{item.time}}</view>
+      </view>
+    </view>
+  </view>
+</view>

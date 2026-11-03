@@ -1,0 +1,90 @@
+.mine-score {
+  font-size: 76rpx;
+  font-weight: 700;
+  color: #F0658A;
+  line-height: 1.1;
+}
+
+.mine-score .unit {
+  font-size: 26rpx;
+  margin-left: 6rpx;
+  color: #8A9099;
+}
+
+.mine-title {
+  font-size: 30rpx;
+  margin: 8rpx 0 10rpx;
+}
+
+.beat {
+  margin-top: 14rpx;
+  font-size: 26rpx;
+  color: #F0658A;
+}
+
+.empty {
+  padding: 28rpx 0;
+  text-align: center;
+  color: #8A9099;
+  font-size: 28rpx;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 0;
+  border-bottom: 2rpx solid #F3F4F6;
+}
+
+.item:last-child {
+  border-bottom: none;
+}
+
+.item.mine-item {
+  background: #FFF7FA;
+  border-radius: 12rpx;
+  padding-left: 16rpx;
+  padding-right: 16rpx;
+}
+
+.rk {
+  width: 66rpx;
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #C9CDD2;
+}
+
+.item.mine-item .rk {
+  color: #F0658A;
+}
+
+.who {
+  flex: 1;
+}
+
+.names {
+  font-size: 28rpx;
+  display: block;
+}
+
+.sc {
+  font-size: 30rpx;
+  color: #F0658A;
+  font-weight: 600;
+}
+
+.credit {
+  font-size: 52rpx;
+  font-weight: 700;
+  color: #2A2E33;
+}
+
+.warn {
+  color: #C98A1B;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

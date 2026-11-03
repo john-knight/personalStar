@@ -1,0 +1,20 @@
+{
+  "maxDepth": 2000,
+  "species": [
+    { "id": "sardine",  "name": "沙丁鱼", "minDepth": 0,    "maxDepth": 260,  "weight": 55, "value": 2,   "size": 30, "color": [150, 210, 230], "speed": 78 },
+    { "id": "mackerel", "name": "鲭鱼",   "minDepth": 180,  "maxDepth": 520,  "weight": 45, "value": 6,   "size": 40, "color": [105, 175, 215], "speed": 95 },
+    { "id": "squid",    "name": "乌贼",   "minDepth": 420,  "maxDepth": 800,  "weight": 30, "value": 14,  "size": 46, "color": [190, 130, 220], "speed": 62 },
+    { "id": "tuna",     "name": "金枪鱼", "minDepth": 700,  "maxDepth": 1100, "weight": 20, "value": 32,  "size": 58, "color": [85, 150, 205],  "speed": 130 },
+    { "id": "shark",    "name": "鲨鱼",   "minDepth": 300,  "maxDepth": 1300, "weight": 16, "value": 0,   "size": 96, "color": [98, 112, 132],  "speed": 175, "hostile": true },
+    { "id": "angler",   "name": "灯笼鱼", "minDepth": 1000, "maxDepth": 1450, "weight": 12, "value": 70,  "size": 52, "color": [95, 120, 165],  "speed": 58 },
+    { "id": "viper",    "name": "毒蛇鱼", "minDepth": 900,  "maxDepth": 1900, "weight": 9,  "value": 0,   "size": 74, "color": [128, 58, 92],   "speed": 145, "hostile": true },
+    { "id": "oarfish",  "name": "皇带鱼", "minDepth": 1300, "maxDepth": 1700, "weight": 7,  "value": 150, "size": 70, "color": [225, 215, 175], "speed": 46 },
+    { "id": "coelac",   "name": "腔棘鱼", "minDepth": 1550, "maxDepth": 1900, "weight": 3,  "value": 320, "size": 78, "color": [130, 95, 150],  "speed": 40 },
+    { "id": "dragon",   "name": "深海龙", "minDepth": 1800, "maxDepth": 2000, "weight": 1,  "value": 800, "size": 92, "color": [235, 150, 95],  "speed": 68 }
+  ],
+  "spawn": {
+    "count": 18,
+    "aheadMeters": 900,
+    "behindMeters": 300
+  }
+}

@@ -1,0 +1,42 @@
+<view class="page">
+
+  <view wx:if="{{phase === 'writing'}}" class="card">
+    <view class="opener">{{opener}}</view>
+
+    <view class="story">
+      <view wx:for="{{lines}}" wx:key="index" class="line {{item.who === 0 ? 'me' : 'ta'}}">
+        <text class="line-name">{{names[item.who]}}：</text>
+        <text class="line-text">{{item.text}}</text>
+      </view>
+    </view>
+
+    <view class="turn-hint">轮到 <text class="who">{{names[curWho]}}</text> 写第 {{lines.length + 1}} / 6 句</view>
+
+    <textarea class="input" value="{{draft}}" bindinput="onInput"
+              placeholder="接一句…" maxlength="60" show-confirm-bar="{{false}}"></textarea>
+    <view class="btn-primary" bindtap="submit">写好了</view>
+  </view>
+
+  <view wx:if="{{phase === 'done'}}" class="card">
+    <view class="done-title">你们的故事</view>
+    <view class="story done-story">
+      <view class="line opener-line">{{opener}}</view>
+      <view wx:for="{{lines}}" wx:key="index" class="line {{item.who === 0 ? 'me' : 'ta'}}">
+        <text class="line-name">{{names[item.who]}}：</text>
+        <text class="line-text">{{item.text}}</text>
+      </view>
+    </view>
+    <view wx:if="{{limited}}" class="muted reward">今天这个游戏的奖励次数用完啦</view>
+    <view wx:else class="reward">+{{gain}} 爱心币已进星球</view>
+    <view class="btn-primary" bindtap="again">再写一个</view>
+    <view class="btn-ghost" bindtap="goHome">回星球</view>
+  </view>
+
+  <view wx:if="{{history.length}}" class="card">
+    <view class="card-title">以前写过的</view>
+    <view wx:for="{{history}}" wx:key="id" class="hist">
+      <view class="hist-time muted">{{item.time}}</view>
+      <view class="hist-text">{{item.preview}}</view>
+    </view>
+  </view>
+</view>

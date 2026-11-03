@@ -1,0 +1,55 @@
+.tabs {
+  display: flex;
+  background: #FFFFFF;
+  padding: 0 24rpx;
+}
+
+.tab {
+  flex: 1;
+  text-align: center;
+  padding: 28rpx 0;
+  color: #8A9099;
+  font-size: 30rpx;
+  border-bottom: 4rpx solid transparent;
+}
+
+.tab.on {
+  color: #F0658A;
+  border-bottom-color: #F0658A;
+}
+
+.field {
+  margin-bottom: 28rpx;
+}
+
+.label {
+  display: block;
+  font-size: 26rpx;
+  color: #8A9099;
+  margin-bottom: 12rpx;
+}
+
+.input {
+  height: 88rpx;
+  background: #F7F8FA;
+  border-radius: 12rpx;
+  padding: 0 24rpx;
+  font-size: 30rpx;
+}
+
+.center {
+  text-align: center;
+}
+
+.code {
+  text-align: center;
+  font-size: 56rpx;
+  letter-spacing: 12rpx;
+  color: #F0658A;
+  font-weight: 600;
+  margin: 20rpx 0 32rpx;
+}
+
+.btn-ghost {
+  margin-top: 16rpx;
+}

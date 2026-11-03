@@ -1,0 +1,32 @@
+<view class="page">
+  <block wx:if="{{!room}}">
+    <view class="card">
+      <view class="card-title">联机五子棋</view>
+      <view class="muted small-text">一个人开房间，把房间码发给 TA，TA 输进来就能一起下</view>
+      <view class="btn-primary" bindtap="create">开一个房间</view>
+      <view class="divider"></view>
+      <view class="join">
+        <input class="join-input" placeholder="输入房间码" maxlength="5"
+               value="{{joinCode}}" bindinput="onCode" />
+        <view class="btn-ghost join-btn" bindtap="join">加入</view>
+      </view>
+      <view wx:if="{{local}}" class="muted small-text tip">本地模拟模式用不了联机，先连上云开发</view>
+    </view>
+  </block>
+
+  <block wx:else>
+    <view class="card">
+      <view class="room-head">
+        <text class="room-code" bindtap="copyCode">{{room.code}}</text>
+        <text class="muted small-text">点一下复制房间码</text>
+      </view>
+      <view class="hint {{room.status === 'over' ? 'is-over' : ''}}">{{hint}}</view>
+    </view>
+
+    <canvas type="2d" id="board" class="board" bindtap="tap"></canvas>
+
+    <view class="muted small-text foot">
+      {{role === room.host ? '你是房主（黑子）' : '你是访客（白子）'}} · 胜负由服务器判
+    </view>
+  </block>
+</view>

@@ -1,0 +1,9 @@
+{
+  "name": "couple",
+  "version": "1.0.0",
+  "description": "情侣关系：创建 / 加入 / 加载",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  }
+}

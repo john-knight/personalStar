@@ -1,0 +1,57 @@
+<view class="page">
+  <!-- 我的名次 -->
+  <view class="card">
+    <view class="card-title">我们的名次</view>
+    <block wx:if="{{mine}}">
+      <view class="mine-score">{{mine.score}}<text class="unit">分</text></view>
+      <view class="mine-title">{{mine.title}}</view>
+      <view class="muted small-text">第 {{mine.rank}} 名 · 榜上共 {{total}} 对</view>
+      <view wx:if="{{beat >= 0}}" class="beat">超过了 {{beat}}% 的情侣</view>
+      <view wx:else class="beat muted">榜上人还太少，先不分胜负</view>
+    </block>
+    <block wx:else>
+      <view class="empty">还没有上榜成绩</view>
+      <view class="muted small-text">先去把默契问答答完，再来这儿交卷</view>
+    </block>
+  </view>
+
+  <!-- 榜单 -->
+  <view class="card">
+    <view class="card-title">默契榜</view>
+    <view wx:if="{{list.length === 0}}" class="empty small-text muted">
+      {{local ? '本地模式下看不到别的 CP，联网后这里才有榜单' : '还没有人上榜，等你开张'}}
+    </view>
+    <view wx:for="{{list}}" wx:key="rank" class="item {{item.mine ? 'mine-item' : ''}}">
+      <text class="rk">{{item.rank}}</text>
+      <view class="who">
+        <text class="names">{{item.names[0]}} &amp; {{item.names[1]}}</text>
+        <text class="muted small-text">{{item.title}} · 在一起 {{item.days}} 天</text>
+      </view>
+      <text class="sc">{{item.score}} 分</text>
+    </view>
+  </view>
+
+  <!-- 可信分：只给自己看，不做公开挂人 -->
+  <view class="card">
+    <view class="card-title">可信分</view>
+    <view class="credit">{{credit}}<text class="muted small-text"> / 100</text></view>
+    <view wx:if="{{canBoard}}" class="muted small-text">够 60 分，可以上榜</view>
+    <view wx:else class="warn small-text">不够 60 分，暂时上不了榜</view>
+    <view wx:for="{{flags}}" wx:key="*this" class="muted small-text">· {{item}}</view>
+    <view wx:if="{{local}}" class="muted small-text">本地模式下不算可信分</view>
+  </view>
+
+  <view class="actions">
+    <view class="btn-primary" bindtap="submit">更新我的成绩</view>
+  </view>
+
+  <view class="card">
+    <view class="row">
+      <view>
+        <text>上榜展示</text>
+        <view class="muted small-text">关掉就立刻从榜上撤下。榜上只有脱敏昵称，没有头像</view>
+      </view>
+      <switch checked="{{onBoard}}" bindchange="toggleBoard" color="#F0658A" />
+    </view>
+  </view>
+</view>

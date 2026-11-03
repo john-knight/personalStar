@@ -1,0 +1,456 @@
+/* 星球头图 */
+.hero {
+  margin: 24rpx;
+  padding: 40rpx 32rpx 32rpx;
+  border-radius: 28rpx;
+  background: linear-gradient(140deg, #FFEAF1 0%, #F2EDFF 100%);
+  box-shadow: 0 8rpx 24rpx rgba(240, 101, 138, 0.08);
+  text-align: center;
+}
+
+.hero-orbit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16rpx;
+}
+
+.hero-planet {
+  width: 104rpx;
+  height: 104rpx;
+  line-height: 104rpx;
+  border-radius: 50%;
+  font-size: 40rpx;
+  color: #FFFFFF;
+  background: #F0658A;
+  box-shadow: 0 6rpx 16rpx rgba(240, 101, 138, 0.35);
+}
+
+.hero-planet.ta {
+  background: #7C6BF5;
+  box-shadow: 0 6rpx 16rpx rgba(124, 107, 245, 0.35);
+}
+
+.hero-link {
+  position: relative;
+  width: 88rpx;
+  height: 2rpx;
+  background: rgba(255, 255, 255, 0.9);
+  margin: 0 20rpx;
+  overflow: visible;
+}
+
+.hero-pulse {
+  position: absolute;
+  top: -5rpx;
+  left: 0;
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 50%;
+  background: #F0658A;
+  animation: slide 2.4s ease-in-out infinite;
+}
+
+@keyframes slide {
+  0% { left: 0; opacity: 0.3; }
+  50% { left: 76rpx; opacity: 1; }
+  100% { left: 0; opacity: 0.3; }
+}
+
+.hero-names {
+  font-size: 36rpx;
+  font-weight: 600;
+}
+
+.amp {
+  color: #F0658A;
+  margin: 0 8rpx;
+}
+
+.hero-sub {
+  font-size: 24rpx;
+  color: #8A9099;
+  margin-top: 4rpx;
+}
+
+.hero-date {
+  display: inline-block;
+  margin-top: 14rpx;
+  padding: 8rpx 22rpx;
+  border-radius: 24rpx;
+  background: rgba(255, 255, 255, 0.7);
+  font-size: 24rpx;
+  color: #F0658A;
+}
+
+.hero-stats {
+  display: flex;
+  align-items: center;
+  margin-top: 28rpx;
+  padding-top: 24rpx;
+  border-top: 2rpx solid rgba(255, 255, 255, 0.7);
+}
+
+.stat {
+  flex: 1;
+}
+
+.stat-num {
+  font-size: 40rpx;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.stat-num.pink { color: #F0658A; }
+.stat-num.purple { color: #7C6BF5; }
+
+.stat-lab {
+  font-size: 22rpx;
+  color: #8A9099;
+  margin-top: 2rpx;
+}
+
+.stat-gap {
+  width: 2rpx;
+  height: 48rpx;
+  background: rgba(226, 228, 231, 0.8);
+}
+
+.wait {
+  margin-top: 20rpx;
+  font-size: 26rpx;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 12rpx;
+  padding: 16rpx;
+  color: #6B7075;
+}
+
+.code-inline {
+  font-weight: bold;
+  color: #F0658A;
+  letter-spacing: 2rpx;
+}
+
+/* 未绑定状态 */
+.hero-empty {
+  text-align: center;
+  padding: 60rpx 32rpx 48rpx;
+}
+
+.blank-orbit {
+  position: relative;
+  width: 160rpx;
+  height: 160rpx;
+  margin: 0 auto 32rpx;
+}
+
+.blank-planet {
+  position: absolute;
+  top: 30rpx;
+  left: 30rpx;
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  background: linear-gradient(140deg, #F7C6D2 0%, #C9C0F5 100%);
+}
+
+.blank-ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 50%;
+  border: 2rpx dashed #E3E5E8;
+}
+
+.empty-title {
+  font-size: 34rpx;
+  margin-bottom: 12rpx;
+}
+
+.hero-empty .btn-primary {
+  margin-top: 40rpx;
+}
+
+/* 分区标题 */
+.section-title {
+  margin: 36rpx 32rpx 16rpx;
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #6B7075;
+}
+
+/* 小游戏入口：六个，两行三列 */
+.games {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16rpx;
+  margin: 0 24rpx;
+}
+
+.game {
+  padding: 24rpx 12rpx 20rpx;
+  background: #FFFFFF;
+  border-radius: 20rpx;
+  text-align: center;
+  box-shadow: 0 4rpx 12rpx rgba(31, 35, 41, 0.04);
+}
+
+.game.locked {
+  opacity: 0.62;
+}
+
+.game-icon {
+  font-size: 48rpx;
+  line-height: 1.2;
+}
+
+.game-name {
+  font-size: 28rpx;
+  margin-top: 6rpx;
+}
+
+.game-desc {
+  font-size: 22rpx;
+  color: #A6ACB3;
+  margin-top: 2rpx;
+}
+
+.game-tag {
+  display: inline-block;
+  margin-top: 12rpx;
+  padding: 2rpx 18rpx;
+  border-radius: 20rpx;
+  font-size: 22rpx;
+  color: #FFFFFF;
+  background: #F0658A;
+}
+
+.game.locked .game-tag {
+  background: #C9CDD2;
+}
+
+/* 最近战绩 */
+.score {
+  margin-top: 12rpx;
+}
+
+.score-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.score-title {
+  font-size: 28rpx;
+  font-weight: 600;
+}
+
+.score-time {
+  font-size: 22rpx;
+}
+
+.score-vs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 16rpx 0 8rpx;
+}
+
+.vs-name {
+  flex: 1;
+  font-size: 26rpx;
+  color: #6B7075;
+  text-align: center;
+}
+
+.vs-num {
+  font-size: 40rpx;
+  font-weight: 600;
+  color: #F0658A;
+  padding: 0 24rpx;
+}
+
+.score-detail {
+  font-size: 24rpx;
+  text-align: center;
+}
+
+/* 土地 */
+.card-title {
+  font-size: 28rpx;
+  margin-bottom: 20rpx;
+}
+
+.plots {
+  display: flex;
+  justify-content: space-between;
+}
+
+.plot {
+  width: 22%;
+}
+
+.plot-inner {
+  height: 110rpx;
+  line-height: 110rpx;
+  text-align: center;
+  border-radius: 14rpx;
+  font-size: 22rpx;
+  background: #F7F8FA;
+  color: #A6ACB3;
+}
+
+.plot-inner.planted {
+  background: #FFF1F5;
+  color: #F0658A;
+}
+
+/* 解除绑定：做得低调，但找得到 */
+.unbind {
+  margin: 48rpx 0 24rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: #B4B9BF;
+}
+
+.unbind-hover {
+  color: #E5484D;
+}
+
+/* 解除绑定确认弹层 */
+.mask {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(20, 22, 26, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 52rpx;
+  z-index: 200;
+}
+
+.sheet {
+  width: 100%;
+  background: #FFFFFF;
+  border-radius: 26rpx;
+  padding: 46rpx 40rpx 34rpx;
+  box-sizing: border-box;
+}
+
+.sheet-title {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #2A2E33;
+  text-align: center;
+}
+
+.sheet-sub {
+  font-size: 25rpx;
+  color: #8A9098;
+  text-align: center;
+  margin-top: 12rpx;
+}
+
+.sheet-item {
+  display: flex;
+  margin-top: 16rpx;
+  font-size: 27rpx;
+  line-height: 1.6;
+  color: #4A4F55;
+}
+
+.sheet-item:first-of-type {
+  margin-top: 30rpx;
+}
+
+.sheet-dot {
+  color: #F0658A;
+  margin-right: 14rpx;
+  flex-shrink: 0;
+}
+
+.sheet-input {
+  margin-top: 30rpx;
+  height: 92rpx;
+  padding: 0 26rpx;
+  border-radius: 14rpx;
+  background: #F7F8FA;
+  font-size: 28rpx;
+  color: #2A2E33;
+  box-sizing: border-box;
+}
+
+.sheet-ph {
+  color: #B4B9BF;
+}
+
+.sheet-err {
+  margin-top: 14rpx;
+  font-size: 24rpx;
+  color: #E5484D;
+}
+
+.sheet-btns {
+  display: flex;
+  margin-top: 34rpx;
+}
+
+.sheet-btn {
+  flex: 1;
+  height: 92rpx;
+  line-height: 92rpx;
+  text-align: center;
+  border-radius: 14rpx;
+  font-size: 29rpx;
+}
+
+.sheet-btn.cancel {
+  background: #F2F3F5;
+  color: #4A4F55;
+  margin-right: 20rpx;
+}
+
+.sheet-btn.danger {
+  background: #E5484D;
+  color: #FFFFFF;
+}
+
+.sheet-btn.off {
+  opacity: 0.5;
+}
+
+/* 日常行 */
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 28rpx;
+  /* 撑大点击热区：之前没内边距，只有一行文字那么高，点在行缝里会像「没反应」 */
+  padding: 22rpx 0;
+}
+
+/* 点下去有反馈，能一眼看出是「点击没触发」还是「跳转失败」 */
+.row-hover {
+  background: #F7F8FA;
+}
+
+/* 行自己有内边距了，分割线就别再撑开那么多 */
+.card .divider {
+  margin: 6rpx 0;
+}
+
+.enter {
+  font-size: 26rpx;
+  color: #F0658A;
+}
+
+.footer {
+  text-align: center;
+  font-size: 22rpx;
+  padding: 24rpx 0;
+}

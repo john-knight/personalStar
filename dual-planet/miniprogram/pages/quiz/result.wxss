@@ -1,0 +1,90 @@
+.score-card {
+  text-align: center;
+  padding: 60rpx 32rpx;
+}
+
+.score-label {
+  font-size: 26rpx;
+  color: #8A9099;
+}
+
+.score {
+  font-size: 110rpx;
+  color: #F0658A;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-top: 8rpx;
+}
+
+.unit {
+  font-size: 28rpx;
+  margin-left: 6rpx;
+  color: #F0658A;
+}
+
+.beat {
+  font-size: 28rpx;
+  color: #7C6BF5;
+  margin-top: 8rpx;
+}
+
+.radar {
+  width: 100%;
+  height: 520rpx;
+}
+
+.dims {
+  margin-top: 20rpx;
+}
+
+.dim {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+
+.dim-name {
+  width: 140rpx;
+  font-size: 24rpx;
+  color: #6B7075;
+}
+
+.dim-bar {
+  flex: 1;
+  height: 8rpx;
+  background: #EEEFF1;
+  border-radius: 4rpx;
+  overflow: hidden;
+}
+
+.dim-fill {
+  height: 100%;
+  background: #F0658A;
+}
+
+.dim-value {
+  width: 60rpx;
+  text-align: right;
+  font-size: 24rpx;
+  color: #8A9099;
+}
+
+/* 分享按钮要去掉小程序 button 的默认样式 */
+.share-btn {
+  padding: 0;
+  line-height: inherit;
+  font-size: inherit;
+  background: transparent;
+}
+
+.share-btn::after {
+  border: none;
+}
+
+.actions {
+  margin: 24rpx;
+}
+
+.actions .btn-ghost {
+  margin-bottom: 16rpx;
+}

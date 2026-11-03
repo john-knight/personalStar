@@ -1,0 +1,50 @@
+<view class="page">
+
+  <view class="card">
+    <view class="head">
+      <text class="who">{{phase === 'rest' ? names[1] : names[turnIdx]}} 来点</text>
+      <text class="timer {{left <= 5 ? 'urgent' : ''}}">{{left}}s</text>
+    </view>
+
+    <view class="grid" style="width:{{boardPx}}px;height:{{boardPx}}px">
+      <view wx:for="{{cells}}" wx:key="index"
+            class="cell {{active === index ? 'on' : ''}} {{hitIdx === index ? 'hit' : ''}} {{missIdx === index ? 'miss' : ''}}"
+            style="width:{{cellPx}}px;height:{{cellPx}}px;left:{{item.left}}px;top:{{item.top}}px"
+            data-i="{{index}}" bindtap="tapCell">
+        <text wx:if="{{active === index}}" class="heart">💗</text>
+      </view>
+    </view>
+
+    <view class="score-row">
+      <view class="side {{turnIdx === 0 && phase !== 'rest' ? 'cur' : ''}}">
+        <view class="side-name">{{names[0]}}</view>
+        <view class="side-num">{{scores[0]}}</view>
+      </view>
+      <view class="vs">:</view>
+      <view class="side {{turnIdx === 1 ? 'cur' : ''}}">
+        <view class="side-name">{{names[1]}}</view>
+        <view class="side-num">{{scores[1]}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="{{phase === 'ready'}}" class="card center">
+    <view class="hint">20 秒，爱心冒出来就点它，点错扣 1 分</view>
+    <view class="btn-primary" bindtap="begin">{{names[0]}} 先来</view>
+    <view class="btn-ghost" bindtap="skipPartner">只玩我自己的</view>
+  </view>
+
+  <view wx:if="{{phase === 'rest'}}" class="card center">
+    <view class="hint">{{names[0]}} 点了 {{scores[0]}} 个</view>
+    <view class="btn-primary" bindtap="begin">把手机交给 {{names[1]}}</view>
+  </view>
+
+  <view wx:if="{{phase === 'over'}}" class="card center">
+    <view class="over-title">{{winnerText}}</view>
+    <view class="muted">{{names[0]}} {{scores[0]}} : {{scores[1]}} {{names[1]}}</view>
+    <view wx:if="{{limited}}" class="muted reward">今天这个游戏的奖励次数用完啦</view>
+    <view wx:else class="reward">+{{gain}} 爱心币已进星球</view>
+    <view class="btn-primary" bindtap="again">再来一局</view>
+    <view class="btn-ghost" bindtap="goHome">回星球</view>
+  </view>
+</view>

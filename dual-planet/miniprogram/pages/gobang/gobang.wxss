@@ -1,0 +1,82 @@
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20rpx;
+}
+
+.turn {
+  font-size: 30rpx;
+  font-weight: 600;
+}
+
+.score-pill {
+  padding: 4rpx 20rpx;
+  border-radius: 24rpx;
+  background: #F7F8FA;
+  font-size: 26rpx;
+  color: #6B7075;
+}
+
+.board-wrap {
+  position: relative;
+  margin: 0 auto;
+  border-radius: 12rpx;
+  overflow: hidden;
+  box-shadow: 0 6rpx 20rpx rgba(31, 35, 41, 0.1);
+}
+
+.board {
+  display: block;
+}
+
+.thinking {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 10rpx 0;
+  text-align: center;
+  font-size: 22rpx;
+  color: #6B7075;
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.ops {
+  display: flex;
+  margin-top: 28rpx;
+}
+
+.ops .btn-ghost {
+  flex: 1;
+  margin-right: 16rpx;
+  height: 72rpx;
+  line-height: 72rpx;
+  font-size: 26rpx;
+}
+
+.ops .btn-ghost:last-child {
+  margin-right: 0;
+}
+
+.tip {
+  text-align: center;
+  font-size: 22rpx;
+  margin-top: 16rpx;
+}
+
+.center {
+  text-align: center;
+}
+
+.over-title {
+  font-size: 36rpx;
+  font-weight: 600;
+  margin-bottom: 8rpx;
+}
+
+.reward {
+  font-size: 30rpx;
+  color: #F0658A;
+  margin: 20rpx 0 8rpx;
+}

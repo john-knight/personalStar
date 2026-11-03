@@ -1,0 +1,32 @@
+<view class="page">
+  <view class="card score-card">
+    <view class="score-label">你们的默契度</view>
+    <view class="score">{{score}}<text class="unit">分</text></view>
+    <view wx:if="{{percent >= 0}}" class="beat">超过了 {{percent}}% 的情侣</view>
+    <view wx:else class="beat muted">已有 {{samples}} 对 CP 参与</view>
+    <view class="muted small-text">{{hit}} / {{total}} 题答案一致</view>
+  </view>
+
+  <view class="card">
+    <view class="card-title">五维默契</view>
+    <canvas type="2d" id="radar" class="radar"></canvas>
+    <view class="dims">
+      <view wx:for="{{dims}}" wx:key="id" class="dim">
+        <text class="dim-name">{{item.name}}</text>
+        <view class="dim-bar">
+          <view class="dim-fill" style="width: {{item.value}}%"></view>
+        </view>
+        <text class="dim-value">{{item.value}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="actions">
+    <view class="btn-ghost" bindtap="saveCard">看报告卡</view>
+    <view class="btn-ghost" bindtap="saveAlbum">存到相册</view>
+    <button class="btn-ghost share-btn" open-type="share">分享给 TA</button>
+    <view class="btn-ghost" bindtap="goRank">看看排第几</view>
+    <view class="btn-ghost" bindtap="goCustom">自己出几道题</view>
+    <view class="btn-primary" bindtap="again">再来一局</view>
+  </view>
+</view>

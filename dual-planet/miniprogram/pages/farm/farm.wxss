@@ -1,0 +1,591 @@
+.res-row {
+  display: flex;
+}
+
+.res {
+  flex: 1;
+}
+
+.res-label {
+  display: block;
+  font-size: 24rpx;
+  color: #8A9099;
+}
+
+.res-value {
+  font-size: 40rpx;
+  color: #F0658A;
+  font-weight: 600;
+}
+
+.res-value.alt {
+  color: #7C6BF5;
+}
+
+.level-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.small-text {
+  font-size: 24rpx;
+}
+
+.exp-bar {
+  height: 8rpx;
+  background: #EEEFF1;
+  border-radius: 4rpx;
+  margin-top: 12rpx;
+  overflow: hidden;
+}
+
+.exp-fill {
+  height: 100%;
+  background: #F0658A;
+  transition: width 500ms ease-out;
+}
+
+.night-tip {
+  margin-top: 20rpx;
+  font-size: 24rpx;
+  color: #7C6BF5;
+  background: #F3F1FF;
+  border-radius: 10rpx;
+  padding: 12rpx 16rpx;
+}
+
+/* 土地：一整片田，作物从土里长出来站在土块上 */
+.title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.field-meta {
+  font-size: 22rpx;
+  color: #A9B0A2;
+  font-weight: 400;
+}
+
+.field {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 22rpx 14rpx 4rpx;
+  border-radius: 20rpx;
+  background: linear-gradient(180deg, #EAF7E0 0%, #D8EEC9 100%);
+}
+
+.plot {
+  position: relative;
+  width: 31%;
+  margin-right: 3.5%;
+  margin-bottom: 20rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.plot:nth-child(3n) {
+  margin-right: 0;
+}
+
+/* 作物区：先撑出高度，作物才像贴着土面站。
+   底部留一点空，否则 emoji 的下沉部分会被土块压住 */
+.crop-wrap {
+  height: 118rpx;
+  padding-bottom: 10rpx;
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  animation: sproutUp 520ms ease-out;
+}
+
+.crop {
+  font-size: 74rpx;
+  line-height: 1;
+  transform-origin: bottom center;
+  filter: drop-shadow(0 8rpx 10rpx rgba(70, 45, 20, 0.26));
+}
+
+/* 种下去那一下，从土里冒出来 */
+@keyframes sproutUp {
+  0% { transform: translateY(28rpx) scale(0.5); opacity: 0; }
+  70% { transform: translateY(-6rpx) scale(1.06); opacity: 1; }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+/* 生长中：根扎在土里不动，上半身轻轻摇 */
+@keyframes cropSway {
+  0%, 100% { transform: rotate(-5deg); }
+  50% { transform: rotate(5deg); }
+}
+
+.crop.seed {
+  animation: cropSway 4s ease-in-out infinite;
+  opacity: 0.9;
+}
+
+.crop.sprout {
+  animation: cropSway 3.4s ease-in-out infinite;
+}
+
+.crop.grown {
+  animation: cropSway 2.6s ease-in-out infinite;
+}
+
+/* 成熟：在土上蹦，催你来收 */
+@keyframes cropHop {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-12rpx) scale(1.08); }
+}
+
+.crop.ripe {
+  animation: cropHop 1300ms ease-in-out infinite;
+  filter: drop-shadow(0 12rpx 16rpx rgba(240, 101, 138, 0.5));
+}
+
+/* 土块：上亮下暗，加一道垄沟纹理，像刚翻过的地 */
+.soil {
+  width: 100%;
+  height: 98rpx;
+  border-radius: 12rpx 12rpx 14rpx 14rpx;
+  background:
+    repeating-linear-gradient(90deg, rgba(0, 0, 0, 0.05) 0 4rpx, transparent 4rpx 14rpx),
+    linear-gradient(180deg, #BF8A59 0%, #9C6C3F 52%, #83562D 100%);
+  box-shadow:
+    inset 0 8rpx 14rpx rgba(0, 0, 0, 0.16),
+    inset 0 -6rpx 8rpx rgba(255, 255, 255, 0.1),
+    0 6rpx 12rpx rgba(90, 60, 25, 0.2);
+  padding: 10rpx 12rpx;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.soil-name {
+  font-size: 22rpx;
+  line-height: 1.2;
+  color: #FFF6E9;
+  text-align: center;
+}
+
+/* TA 种的那块，名字前挂个小标签 */
+.mine-tag {
+  font-size: 16rpx;
+  color: #FFFFFF;
+  background: #7C6BF5;
+  border-radius: 6rpx;
+  padding: 0 6rpx;
+  margin-right: 6rpx;
+}
+
+.soil-bar {
+  height: 7rpx;
+  border-radius: 4rpx;
+  background: rgba(0, 0, 0, 0.22);
+  margin-top: 7rpx;
+  overflow: hidden;
+}
+
+.soil-bar-fill {
+  height: 100%;
+  border-radius: 3rpx;
+  transition: width 900ms linear;
+}
+
+.soil-state {
+  font-size: 20rpx;
+  color: #FFE2C2;
+  text-align: center;
+  margin-top: 5rpx;
+}
+
+/* 空地：一个凹下去的土坑，看着就想点 */
+.plot-empty .crop-wrap {
+  animation: none;
+}
+
+.soil-empty {
+  align-items: center;
+  background: linear-gradient(180deg, #A2703F 0%, #7B4F26 100%);
+  box-shadow: inset 0 12rpx 20rpx rgba(0, 0, 0, 0.42);
+}
+
+.plus {
+  font-size: 34rpx;
+  line-height: 1;
+  color: rgba(255, 240, 220, 0.62);
+}
+
+.plot-hint {
+  font-size: 19rpx;
+  color: rgba(255, 240, 220, 0.6);
+  margin-top: 6rpx;
+}
+
+/* 还没开垦：虚线圈，别抢戏 */
+.plot-lock {
+  width: 100%;
+  height: 216rpx;
+  border: 2rpx dashed #C3CDBA;
+  border-radius: 12rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.lock-icon {
+  font-size: 30rpx;
+  opacity: 0.45;
+}
+
+.plot-lock .plot-hint {
+  color: #A9B0A2;
+  font-size: 20rpx;
+  margin-top: 10rpx;
+}
+
+/* 被偷过：角标挂在作物区左上角，那块空着，不压作物也不压土块上的字 */
+.stolen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 17rpx;
+  line-height: 1.5;
+  color: #FFFFFF;
+  background: rgba(192, 133, 82, 0.92);
+  border-radius: 8rpx;
+  padding: 0 7rpx;
+}
+
+/* 成熟的地块：土块自己发光，整片田一眼看到哪块该收 */
+@keyframes soilGlow {
+  0%, 100% {
+    box-shadow:
+      inset 0 8rpx 14rpx rgba(0, 0, 0, 0.16),
+      0 0 0 2rpx rgba(240, 101, 138, 0.5),
+      0 6rpx 12rpx rgba(240, 101, 138, 0.16);
+  }
+  50% {
+    box-shadow:
+      inset 0 8rpx 14rpx rgba(0, 0, 0, 0.16),
+      0 0 0 4rpx rgba(240, 101, 138, 0.9),
+      0 8rpx 22rpx rgba(240, 101, 138, 0.45);
+  }
+}
+
+.plot.mature .soil {
+  animation: soilGlow 2000ms ease-in-out infinite;
+}
+
+.plot.mature .soil-state {
+  color: #FFC4D6;
+  font-weight: 600;
+}
+
+/* 收获：弹一下 */
+@keyframes plotPop {
+  0% { transform: scale(1); }
+  35% { transform: scale(1.14); }
+  60% { transform: scale(0.96); }
+  100% { transform: scale(1); }
+}
+
+.plot.pop { animation: plotPop 560ms ease-out; }
+
+/* 被偷：左右抖 */
+@keyframes plotShake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-8rpx); }
+  40% { transform: translateX(8rpx); }
+  60% { transform: translateX(-6rpx); }
+  80% { transform: translateX(6rpx); }
+}
+
+.plot.shake { animation: plotShake 520ms ease-in-out; }
+
+/* 弹层 */
+.mask {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: flex-end;
+}
+
+.sheet {
+  width: 100%;
+  background: #FFFFFF;
+  border-radius: 24rpx 24rpx 0 0;
+  padding: 32rpx;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.sheet-title {
+  font-size: 30rpx;
+  margin-bottom: 20rpx;
+}
+
+.seed {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #F2F3F5;
+}
+
+.seed-icon {
+  width: 56rpx;
+  font-size: 40rpx;
+  line-height: 1;
+  text-align: center;
+  margin-right: 18rpx;
+  flex-shrink: 0;
+}
+
+.seed-info {
+  flex: 1;
+}
+
+.seed-name {
+  font-size: 28rpx;
+}
+
+.seed-locked .seed-name,
+.seed-locked .seed-info {
+  color: #C4C8CD;
+}
+
+.seed-tag {
+  font-size: 22rpx;
+  color: #A6ACB3;
+}
+
+/* 防偷道具 */
+.alarm-tip {
+  padding: 16rpx 20rpx;
+  margin-bottom: 20rpx;
+  border-radius: 12rpx;
+  background: #FFF7E6;
+  color: #A9721B;
+  font-size: 24rpx;
+}
+
+.guard {
+  display: flex;
+  align-items: center;
+  padding: 16rpx 0;
+  border-bottom: 2rpx solid #F3F4F6;
+}
+
+.guard:last-child {
+  border-bottom: none;
+}
+
+.guard-icon {
+  font-size: 44rpx;
+  width: 72rpx;
+  text-align: center;
+}
+
+.guard-info {
+  flex: 1;
+}
+
+.guard-name {
+  font-size: 28rpx;
+}
+
+.guard-state {
+  margin-left: 12rpx;
+  font-size: 22rpx;
+  color: #A6ACB3;
+}
+
+.guard-state.state-on {
+  color: #F0658A;
+}
+
+.guard-buy {
+  padding: 10rpx 24rpx;
+  border-radius: 28rpx;
+  background: #F7F8FA;
+  font-size: 24rpx;
+  color: #6B7075;
+}
+
+.guard.on .guard-buy {
+  background: #FFF1F5;
+  color: #F0658A;
+}
+
+/* 合养的树 */
+.tree-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+
+.tree-icon {
+  font-size: 56rpx;
+  width: 88rpx;
+  text-align: center;
+}
+
+.tree-info {
+  flex: 1;
+}
+
+.tree-level {
+  font-size: 30rpx;
+  font-weight: 600;
+}
+
+.tree-who {
+  display: flex;
+  justify-content: space-between;
+  font-size: 24rpx;
+  color: #A6ACB3;
+  margin-bottom: 16rpx;
+}
+
+.tree-who .done {
+  color: #5FC27E;
+}
+
+.tree-btn {
+  margin-top: 4rpx;
+}
+
+/* 惊喜种子 */
+.note-input-row {
+  display: flex;
+  align-items: center;
+  margin: 16rpx 0;
+}
+
+.note-input {
+  flex: 1;
+  height: 72rpx;
+  padding: 0 22rpx;
+  border-radius: 12rpx;
+  background: #F7F8FA;
+  font-size: 26rpx;
+}
+
+.note-btn {
+  width: 130rpx;
+  margin-left: 14rpx;
+}
+
+.note {
+  padding: 18rpx 20rpx;
+  border-radius: 14rpx;
+  background: #FBFBFC;
+  margin-bottom: 14rpx;
+}
+
+.note.open {
+  background: #FFF7FA;
+}
+
+.note-head {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8rpx;
+}
+
+.note-from {
+  font-size: 24rpx;
+  color: #6B7075;
+  margin-right: 12rpx;
+}
+
+.note-new {
+  font-size: 20rpx;
+  color: #FFFFFF;
+  background: #F0658A;
+  border-radius: 14rpx;
+  padding: 2rpx 12rpx;
+}
+
+.note-wait {
+  font-size: 22rpx;
+  color: #C98A1B;
+}
+
+.note-text {
+  font-size: 27rpx;
+  line-height: 1.6;
+  color: #2A2E33;
+}
+
+.note-empty {
+  padding: 10rpx 0;
+}
+
+/* 攒下来的：情话次数 */
+.perk-row {
+  display: flex;
+  align-items: center;
+}
+
+.perk-icon {
+  font-size: 44rpx;
+  width: 72rpx;
+  text-align: center;
+}
+
+.perk-info {
+  flex: 1;
+}
+
+.perk-name {
+  font-size: 28rpx;
+}
+
+.perk-go {
+  font-size: 24rpx;
+  color: #F0658A;
+}
+
+/* 飘字反馈 */
+.fly-layer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 72%;
+  pointer-events: none;
+  z-index: 60;
+  overflow: hidden;
+}
+
+.fly-item {
+  position: absolute;
+  bottom: 45%;
+  font-size: 38rpx;
+  font-weight: 700;
+  color: #F0658A;
+  white-space: nowrap;
+  opacity: 0;
+  animation: flyUp 1300ms ease-out forwards;
+  text-shadow: 0 2rpx 10rpx rgba(255, 255, 255, 0.9);
+}
+
+.fly-item.steal { color: #7C6BF5; }
+.fly-item.exp { color: #E8A33D; font-size: 30rpx; }
+
+@keyframes flyUp {
+  0% { opacity: 0; transform: translateY(20rpx) scale(0.8); }
+  18% { opacity: 1; transform: translateY(0) scale(1.15); }
+  100% { opacity: 0; transform: translateY(-180rpx) scale(1); }
+}

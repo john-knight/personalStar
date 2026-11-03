@@ -1,0 +1,29 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/farm/farm",
+    "pages/quiz/quiz",
+    "pages/quiz/result",
+    "pages/quiz/custom",
+    "pages/bind/bind",
+    "pages/puzzle/puzzle",
+    "pages/tapheart/tapheart",
+    "pages/story/story",
+    "pages/gobang/gobang",
+    "pages/drawguess/drawguess",
+    "pages/rank/rank",
+    "pages/daily/daily",
+    "pages/timeline/timeline",
+    "pages/bucket/bucket",
+    "pages/online/online"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#FFFFFF",
+    "navigationBarTitleText": "双人星球",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#F7F8FA"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

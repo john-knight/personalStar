@@ -1,0 +1,60 @@
+.join {
+  display: flex;
+  align-items: center;
+}
+
+.join-input {
+  flex: 1;
+  height: 76rpx;
+  padding: 0 24rpx;
+  border-radius: 12rpx;
+  background: #F7F8FA;
+  font-size: 28rpx;
+  letter-spacing: 4rpx;
+}
+
+.join-btn {
+  width: 150rpx;
+  margin-left: 16rpx;
+}
+
+.tip {
+  margin-top: 16rpx;
+}
+
+.room-head {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 12rpx;
+}
+
+.room-code {
+  font-size: 48rpx;
+  font-weight: 700;
+  letter-spacing: 6rpx;
+  color: #F0658A;
+  margin-right: 20rpx;
+}
+
+.hint {
+  font-size: 28rpx;
+  color: #2A2E33;
+}
+
+.hint.is-over {
+  color: #F0658A;
+  font-weight: 600;
+}
+
+.board {
+  width: 92vw;
+  height: 92vw;
+  margin: 8rpx auto 0;
+  display: block;
+  border-radius: 16rpx;
+}
+
+.foot {
+  text-align: center;
+  margin-top: 20rpx;
+}

@@ -1,0 +1,165 @@
+<view class="page">
+  <!-- 资源条 -->
+  <view class="card">
+    <view class="res-row">
+      <view class="res">
+        <text class="res-label">爱心币</text>
+        <text class="res-value">{{farm.coins || 0}}</text>
+      </view>
+      <view class="res">
+        <text class="res-label">我的小金库</text>
+        <text class="res-value alt">{{farm.myCoins || 0}}</text>
+      </view>
+    </view>
+    <view class="divider"></view>
+    <view class="level-row">
+      <text>星球 Lv.{{farm.level}}</text>
+      <text class="muted small-text">距离下一级还差 {{farm.expToNext}} 经验</text>
+    </view>
+    <view class="exp-bar">
+      <view class="exp-fill" style="width: {{expPercent}}%"></view>
+    </view>
+    <view wx:if="{{farm.isNight}}" class="night-tip">夜间加成中 · 月亮花与星星果收益 +30%</view>
+  </view>
+
+  <!-- 土地：一整片田，作物从土里长出来站在土块上 -->
+  <view class="card">
+    <view class="card-title title-row">
+      <text>星球土地</text>
+      <text class="field-meta">{{farm.unlocked}} 块地{{ripeCount > 0 ? ' · ' + ripeCount + ' 块可收' : ''}}</text>
+    </view>
+    <view class="field">
+      <view wx:for="{{plots}}" wx:key="index"
+            class="plot {{item.locked ? 'locked' : (item.empty ? 'empty' : (item.mature ? 'mature' : 'growing'))}} {{item.index === popIndex ? 'pop' : ''}} {{item.index === shakeIndex ? 'shake' : ''}}"
+            data-index="{{item.index}}" bindtap="onPlotTap">
+        <view wx:if="{{item.locked}}" class="plot-lock">
+          <text class="lock-icon">🔒</text>
+          <text class="plot-hint">{{item.text}}</text>
+        </view>
+        <view wx:elif="{{item.empty}}" class="plot-empty">
+          <view class="crop-wrap"></view>
+          <view class="soil soil-empty">
+            <text class="plus">＋</text>
+            <text class="plot-hint">播种</text>
+          </view>
+        </view>
+        <block wx:else>
+          <view class="crop-wrap">
+            <view class="crop {{item.stage}}">{{item.icon}}</view>
+          </view>
+          <view class="soil">
+            <view class="soil-name"><text wx:if="{{!item.mine}}" class="mine-tag">TA</text>{{item.name}}</view>
+            <view class="soil-bar">
+              <view class="soil-bar-fill" style="width: {{item.progress}}%; background: {{item.mature ? '#FF8FB0' : item.color}}"></view>
+            </view>
+            <view class="soil-state">{{item.text}}</view>
+          </view>
+          <view wx:if="{{item.stolen}}" class="stolen">偷 {{item.stolenPct}}%</view>
+        </block>
+      </view>
+    </view>
+  </view>
+
+  <!-- 防偷道具 -->
+  <view class="card">
+    <view class="card-title">防偷道具</view>
+    <view wx:if="{{lastSteal}}" class="alarm-tip">
+      ⏰ {{lastSteal.whoText}} 摸走了{{lastSteal.whose}}{{lastSteal.crop}}（{{lastSteal.amount}} 币）
+    </view>
+    <view wx:for="{{guardList}}" wx:key="id" class="guard {{item.on ? 'on' : ''}}">
+      <view class="guard-icon">{{item.icon}}</view>
+      <view class="guard-info">
+        <view class="guard-name">
+          {{item.name}}
+          <text class="guard-state {{item.on ? 'state-on' : ''}}">{{item.state}}</text>
+        </view>
+        <view class="muted small-text">{{item.desc}}</view>
+      </view>
+      <view class="guard-buy" data-id="{{item.id}}" bindtap="buyGuard">{{item.price}} 币</view>
+    </view>
+  </view>
+
+  <!-- 合养的树：两个人各浇一次才长一级 -->
+  <view wx:if="{{tree}}" class="card">
+    <view class="card-title">合养的树</view>
+    <view class="tree-row">
+      <view class="tree-icon">🌳</view>
+      <view class="tree-info">
+        <view class="tree-level">第 {{tree.level}} 级<text class="muted small-text"> / {{tree.maxLevel}}</text></view>
+        <view class="muted small-text">{{tree.text}}</view>
+      </view>
+    </view>
+    <view class="tree-who">
+      <text class="{{tree.aWatered ? 'done' : ''}}">{{tree.names.a}} {{tree.aWatered ? '浇过了' : '还没浇'}}</text>
+      <text class="{{tree.bWatered ? 'done' : ''}}">{{tree.names.b}} {{tree.bWatered ? '浇过了' : '还没浇'}}</text>
+    </view>
+    <view wx:if="{{!tree.full}}" class="btn-ghost tree-btn" bindtap="waterTree">浇一次水</view>
+  </view>
+
+  <!-- 惊喜种子 -->
+  <view class="card">
+    <view class="card-title">惊喜种子</view>
+    <view class="muted small-text">埋一句话，半个小时后对方才能打开</view>
+    <view class="note-input-row">
+      <input class="note-input" placeholder="想说的话，60 字以内" maxlength="60"
+             value="{{noteText}}" bindinput="onNoteInput" />
+      <view class="btn-ghost note-btn" bindtap="leaveNote">埋下</view>
+    </view>
+    <view wx:for="{{notes}}" wx:key="id" class="note {{item.open ? 'open' : ''}}"
+          data-id="{{item.id}}" bindtap="readNote">
+      <view class="note-head">
+        <text class="note-from">{{item.fromText}}</text>
+        <text wx:if="{{item.open && !item.mine && !item.read}}" class="note-new">新</text>
+        <text wx:if="{{!item.open}}" class="note-wait">{{item.leftText}}</text>
+      </view>
+      <view class="note-text">{{item.open ? item.text : '🌱 还没发芽'}}</view>
+    </view>
+    <view wx:if="{{notes.length === 0}}" class="muted small-text note-empty">还没有纸条</view>
+  </view>
+
+  <!-- 收草莓攒下来的 -->
+  <view class="card">
+    <view class="card-title">攒下来的</view>
+    <view class="perk-row" bindtap="useLoveWord">
+      <text class="perk-icon">💌</text>
+      <view class="perk-info">
+        <text class="perk-name">情话 ×{{lovewords}}</text>
+        <view class="muted small-text">收草莓能攒，攒一次翻一张</view>
+      </view>
+      <text class="perk-go">{{lovewords > 0 ? '翻一张 ›' : ''}}</text>
+    </view>
+  </view>
+
+  <!-- 本地模拟 -->
+  <view wx:if="{{local}}" class="card">
+    <view class="card-title">本地模拟（单机演示双人）</view>
+    <view class="btn-ghost" bindtap="mockPlant">模拟 TA 种下成熟的月亮花</view>
+    <view class="btn-ghost" bindtap="mockSteal">模拟 TA 来偷一把</view>
+  </view>
+
+  <!-- 种子弹层 -->
+  <view wx:if="{{showSeed}}" class="mask" bindtap="closeSeed">
+    <view class="sheet" catchtap="noop">
+      <view class="sheet-title">选择种子</view>
+      <view class="seed-list">
+        <view wx:for="{{seeds}}" wx:key="id" class="seed {{item.locked ? 'seed-locked' : ''}}"
+              data-id="{{item.id}}" bindtap="pickSeed">
+          <view class="seed-icon">{{item.icon}}</view>
+          <view class="seed-info">
+            <view class="seed-name">{{item.name}}</view>
+            <view class="muted small-text">{{item.timeText}} · {{item.price}} 币</view>
+          </view>
+          <view class="seed-tag" wx:if="{{item.locked}}">Lv.{{item.level}}</view>
+        </view>
+      </view>
+      <view class="btn-ghost" bindtap="closeSeed">取消</view>
+    </view>
+  </view>
+
+  <!-- 收获 / 偷菜的飘字反馈 -->
+  <view class="fly-layer">
+    <view wx:for="{{flyers}}" wx:key="id"
+          class="fly-item {{item.type}}"
+          style="left: {{item.x}}%; animation-delay: {{item.delay}}ms;">{{item.text}}</view>
+  </view>
+</view>

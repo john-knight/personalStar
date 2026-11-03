@@ -1,0 +1,34 @@
+<view class="page">
+  <view class="tabs">
+    <view class="tab {{mode === 'create' ? 'on' : ''}}" data-mode="create" bindtap="switchMode">创建星球</view>
+    <view class="tab {{mode === 'join' ? 'on' : ''}}" data-mode="join" bindtap="switchMode">加入星球</view>
+  </view>
+
+  <view class="card" wx:if="{{mode === 'create'}}">
+    <view class="field">
+      <text class="label">你的昵称</text>
+      <input class="input" placeholder="TA 会看到这个名字" value="{{myName}}" bindinput="onInputName" />
+    </view>
+    <view class="btn-primary {{myName ? '' : 'disabled'}}" bindtap="create">创建我们的星球</view>
+
+    <block wx:if="{{code}}">
+      <view class="divider"></view>
+      <view class="muted center">把这个邀请码发给 TA</view>
+      <view class="code">{{code}}</view>
+      <view class="btn-ghost" bindtap="copyCode">复制邀请码</view>
+      <view wx:if="{{local}}" class="btn-ghost" bindtap="mockJoin">本地模拟对方加入</view>
+    </block>
+  </view>
+
+  <view class="card" wx:if="{{mode === 'join'}}">
+    <view class="field">
+      <text class="label">邀请码</text>
+      <input class="input" placeholder="6 位邀请码" maxlength="6" value="{{inputCode}}" bindinput="onInputCode" />
+    </view>
+    <view class="field">
+      <text class="label">你的昵称</text>
+      <input class="input" placeholder="TA 会看到这个名字" value="{{myName}}" bindinput="onInputName" />
+    </view>
+    <view class="btn-primary {{inputCode && myName ? '' : 'disabled'}}" bindtap="join">加入 TA 的星球</view>
+  </view>
+</view>

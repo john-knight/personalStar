@@ -1,0 +1,9 @@
+{
+  "name": "farm",
+  "version": "1.0.0",
+  "description": "农场：播种 / 收获 / 偷菜",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  }
+}

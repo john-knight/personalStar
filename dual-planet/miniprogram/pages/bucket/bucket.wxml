@@ -1,0 +1,32 @@
+<view class="page">
+  <view class="card">
+    <view class="head">
+      <text class="big">{{done}}</text>
+      <text class="muted"> / {{total}} 件</text>
+    </view>
+    <view class="bar">
+      <view class="bar-in" style="width:{{percent}}%"></view>
+    </view>
+    <view class="muted small-text">打钩的时候两个人都看得见，异地先计划，见面再兑现</view>
+
+    <!-- 自己加一件 -->
+    <view class="add-row">
+      <input class="add-input" placeholder="自己加一件想一起做的事" maxlength="24"
+             value="{{input}}" bindinput="onInput" bindconfirm="addItem" confirm-type="done" />
+      <view class="btn-ghost add-btn" bindtap="addItem">加上</view>
+    </view>
+  </view>
+
+  <view wx:for="{{groups}}" wx:key="id" class="card">
+    <view class="card-title">{{item.icon}} {{item.name}}<text class="muted small-text group-count"> {{item.done}}/{{item.total}}</text></view>
+    <view wx:for="{{item.items}}" wx:for-item="it" wx:key="id"
+          class="bk {{it.done ? 'on' : ''}}" data-id="{{it.id}}" bindtap="toggle">
+      <view class="box">{{it.done ? '✓' : ''}}</view>
+      <view class="bk-body">
+        <view class="bk-text">{{it.t}}</view>
+        <view wx:if="{{it.done}}" class="muted small-text">{{it.who}} 打钩的</view>
+      </view>
+      <view wx:if="{{it.custom}}" class="bk-del" data-id="{{it.id}}" catchtap="delItem">×</view>
+    </view>
+  </view>
+</view>

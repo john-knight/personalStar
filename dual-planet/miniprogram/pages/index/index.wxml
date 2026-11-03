@@ -1,0 +1,144 @@
+<view class="page">
+
+  <!-- 还没绑定 -->
+  <view wx:if="{{!hasCouple}}" class="card hero-empty">
+    <view class="blank-orbit">
+      <view class="blank-planet"></view>
+      <view class="blank-ring"></view>
+    </view>
+    <view class="empty-title">还没有你们的星球</view>
+    <view class="muted">创建一个，或者用 TA 给的邀请码加入</view>
+    <view class="btn-primary" bindtap="goBind">创建 / 加入星球</view>
+  </view>
+
+  <!-- 已绑定 -->
+  <block wx:if="{{hasCouple}}">
+    <view class="hero">
+      <view class="hero-orbit">
+        <view class="hero-planet me">{{meInitial}}</view>
+        <view class="hero-link"><view class="hero-pulse"></view></view>
+        <view class="hero-planet ta">{{taInitial}}</view>
+      </view>
+      <view class="hero-names" bindtap="editNick">{{meName}} <text class="amp">&</text> {{taName}}</view>
+      <view class="hero-sub">在一起 {{days}} 天 · 星球 Lv.{{level}}</view>
+      <view wx:if="{{nextDate}}" class="hero-date">{{nextDate.title}} · {{nextDate.text}}</view>
+
+      <view class="hero-stats">
+        <view class="stat">
+          <view class="stat-num pink">{{coins}}</view>
+          <view class="stat-lab">爱心币</view>
+        </view>
+        <view class="stat-gap"></view>
+        <view class="stat">
+          <view class="stat-num">{{days}}</view>
+          <view class="stat-lab">在一起（天）</view>
+        </view>
+        <view class="stat-gap"></view>
+        <view class="stat">
+          <view class="stat-num purple">{{level}}</view>
+          <view class="stat-lab">星球等级</view>
+        </view>
+      </view>
+
+      <view wx:if="{{waiting}}" class="wait">等 TA 用邀请码 <text class="code-inline">{{code}}</text> 加入</view>
+    </view>
+
+    <view class="section-title">一起玩</view>
+    <view class="games">
+      <view wx:for="{{games}}" wx:key="id" class="game {{item.locked ? 'locked' : ''}}"
+            bindtap="goGame" data-id="{{item.id}}">
+        <view class="game-icon">{{item.icon}}</view>
+        <view class="game-name">{{item.name}}</view>
+        <view class="game-desc">{{item.desc}}</view>
+        <view class="game-tag">{{item.locked ? '待配置' : '去玩 ›'}}</view>
+      </view>
+    </view>
+
+    <view wx:if="{{lastScore}}" class="card score">
+      <view class="card-title">最近战绩</view>
+      <view class="score-head">
+        <text class="score-title">{{lastScore.title}}</text>
+        <text class="score-time muted">{{lastScore.time}}</text>
+      </view>
+      <!-- 有对手的才显示比分，接龙和拼图这种只显示一行说明 -->
+      <view wx:if="{{lastScore.hasVs}}" class="score-vs">
+        <text class="vs-name">{{lastScore.names[0]}}</text>
+        <text class="vs-num">{{lastScore.score[0]}} : {{lastScore.score[1]}}</text>
+        <text class="vs-name">{{lastScore.names[1]}}</text>
+      </view>
+      <view class="score-detail muted">{{lastScore.detail}}</view>
+    </view>
+
+    <view class="section-title">星球日常</view>
+    <view class="card">
+      <view class="row" hover-class="row-hover" bindtap="goFarm">
+        <text>种菜偷菜</text>
+        <text class="enter">进菜地 ›</text>
+      </view>
+      <view class="divider"></view>
+      <view class="row" hover-class="row-hover" bindtap="goQuiz">
+        <text>默契问答</text>
+        <text class="enter">60 道题 ›</text>
+      </view>
+      <view class="divider"></view>
+      <view class="row" hover-class="row-hover" bindtap="goDaily">
+        <text>每日一问</text>
+        <text class="enter">{{dailyAnswered ? '今天答过了 ›' : '今天还没答 ›'}}</text>
+      </view>
+      <view class="divider"></view>
+      <view class="row" hover-class="row-hover" bindtap="goTimeline">
+        <text>时光轴</text>
+        <text class="enter">我们的日子 ›</text>
+      </view>
+      <view class="divider"></view>
+      <view class="row" hover-class="row-hover" bindtap="goBucket">
+        <text>一起做的事</text>
+        <text class="enter">{{bucketDone}}/{{bucketTotal}} ›</text>
+      </view>
+      <view class="divider"></view>
+      <view class="row" hover-class="row-hover" bindtap="goOnline">
+        <text>联机五子棋</text>
+        <text class="enter">和 TA 下一局 ›</text>
+      </view>
+      <view class="divider"></view>
+      <view class="row" hover-class="row-hover" bindtap="goRank">
+        <text>默契榜</text>
+        <text class="enter">看看排第几 ›</text>
+      </view>
+      <!-- 菜地预览：地全空的时候不显示，否则只是四格「空地」占地方 -->
+      <block wx:if="{{hasCrop}}">
+        <view class="divider"></view>
+        <view class="plots">
+          <view wx:for="{{plots}}" wx:key="slot" class="plot">
+            <view class="plot-inner {{item.free ? 'empty' : 'planted'}}">{{item.text}}</view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </block>
+
+  <view wx:if="{{hasCouple}}" class="unbind" hover-class="unbind-hover" bindtap="unbind">解除绑定</view>
+
+  <view wx:if="{{local}}" class="footer muted">本地模拟模式 · 未连接云开发</view>
+
+  <!-- 解除绑定的确认弹层：不用 wx.showModal，那边高度和字号写死，文案稍长就得滚动 -->
+  <view wx:if="{{unbindOpen}}" class="mask" catchtouchmove="noop" bindtap="closeUnbind">
+    <view class="sheet" catchtap="noop">
+      <view class="sheet-title">解除绑定</view>
+      <view class="sheet-sub">绑定会解除，这个星球会被封存</view>
+
+      <view class="sheet-item"><text class="sheet-dot">·</text><text>菜地、默契问答、时光轴、纪念日都还留着</text></view>
+      <view class="sheet-item"><text class="sheet-dot">·</text><text>但你们两个人都进不去了</text></view>
+      <view class="sheet-item"><text class="sheet-dot">·</text><text>想重新开始，随时可以再建一个星球</text></view>
+
+      <input class="sheet-input" placeholder="输入「解除」两个字确认" placeholder-class="sheet-ph"
+             maxlength="10" value="{{unbindInput}}" bindinput="onUnbindInput" confirm-type="done" />
+      <view wx:if="{{unbindErr}}" class="sheet-err">{{unbindErr}}</view>
+
+      <view class="sheet-btns">
+        <view class="sheet-btn cancel" bindtap="closeUnbind">再想想</view>
+        <view class="sheet-btn danger {{unbindBusy ? 'off' : ''}}" bindtap="doUnbind">确定解除</view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,34 @@
+<view class="page">
+  <block wx:if="{{daily}}">
+    <view class="card">
+      <view class="tag">{{daily.tag}}</view>
+      <view class="q">{{daily.q}}</view>
+      <view class="muted small-text">{{daily.day}} · 每天一题，你们看到的是同一道</view>
+    </view>
+
+    <view class="options">
+      <view wx:for="{{daily.options}}" wx:key="*this"
+            class="option {{daily.mine === index ? 'picked' : ''}} {{daily.both && daily.ta === index ? 'ta-pick' : ''}}"
+            data-index="{{index}}" bindtap="choose">
+        <text class="opt-text">{{item}}</text>
+        <text wx:if="{{daily.mine === index}}" class="opt-mark me">我</text>
+        <text wx:if="{{daily.both && daily.ta === index}}" class="opt-mark ta">TA</text>
+      </view>
+    </view>
+
+    <view wx:if="{{daily.answered && !daily.both}}" class="card">
+      <view>你答完了，等 TA 也选一个</view>
+      <view class="muted small-text">两个人都答完，才互相看得到</view>
+      <view wx:if="{{local}}" class="btn-ghost mock-btn" bindtap="mockTa">本地模拟 TA 回答</view>
+    </view>
+
+    <view wx:if="{{daily.both}}" class="card">
+      <view class="result-title">{{daily.same ? '你们想到一块去了' : '你们想法不太一样'}}</view>
+      <view class="muted small-text">一样也好，不一样也好，反正是你们俩</view>
+    </view>
+
+    <view wx:if="{{!daily.answered}}" class="muted small-text foot">选一个，答完才看得到 TA 选了什么</view>
+  </block>
+
+  <view wx:else class="card empty muted">{{loading ? '加载中' : '先去绑定另一半'}}</view>
+</view>

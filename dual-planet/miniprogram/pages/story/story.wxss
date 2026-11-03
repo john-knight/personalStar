@@ -1,0 +1,101 @@
+.opener {
+  font-size: 30rpx;
+  color: #6B7075;
+  padding-bottom: 20rpx;
+  border-bottom: 2rpx dashed #EEEFF1;
+}
+
+.story {
+  margin-top: 20rpx;
+}
+
+.line {
+  font-size: 28rpx;
+  line-height: 1.8;
+  margin-bottom: 10rpx;
+}
+
+.line-name {
+  color: #A6ACB3;
+  font-size: 24rpx;
+}
+
+.line.me .line-text {
+  color: #F0658A;
+}
+
+.line.ta .line-text {
+  color: #7C6BF5;
+}
+
+.opener-line {
+  color: #8A9099;
+}
+
+.turn-hint {
+  margin: 28rpx 0 16rpx;
+  font-size: 26rpx;
+  color: #6B7075;
+}
+
+.who {
+  color: #F0658A;
+  font-weight: 600;
+}
+
+.input {
+  width: 100%;
+  height: 140rpx;
+  padding: 20rpx;
+  box-sizing: border-box;
+  background: #F7F8FA;
+  border-radius: 16rpx;
+  font-size: 28rpx;
+}
+
+.btn-primary {
+  margin-top: 24rpx;
+}
+
+.done-title {
+  font-size: 34rpx;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 16rpx;
+}
+
+.done-story {
+  background: #FFF9FB;
+  border-radius: 16rpx;
+  padding: 24rpx;
+}
+
+.reward {
+  text-align: center;
+  font-size: 30rpx;
+  color: #F0658A;
+  margin-top: 24rpx;
+}
+
+.card-title {
+  font-size: 28rpx;
+  margin-bottom: 16rpx;
+}
+
+.hist {
+  padding: 16rpx 0;
+  border-bottom: 2rpx solid #F3F4F6;
+}
+
+.hist:last-child {
+  border-bottom: none;
+}
+
+.hist-time {
+  font-size: 22rpx;
+}
+
+.hist-text {
+  font-size: 26rpx;
+  margin-top: 4rpx;
+}

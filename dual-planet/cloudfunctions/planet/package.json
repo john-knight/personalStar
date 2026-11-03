@@ -1,0 +1,9 @@
+{
+  "name": "planet",
+  "version": "1.0.0",
+  "description": "星球：每日一问 / 时光轴 / 纪念日 / 纸条 / 合养树 / 一起做的事 / 联机五子棋",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  }
+}

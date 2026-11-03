@@ -1,0 +1,205 @@
+.next {
+  padding: 24rpx;
+  border-radius: 16rpx;
+  background: linear-gradient(135deg, #FFF1F5, #F7F9FF);
+  margin-bottom: 20rpx;
+}
+
+.next-left {
+  font-size: 40rpx;
+  font-weight: 700;
+  color: #F0658A;
+}
+
+.next-title {
+  font-size: 26rpx;
+  color: #6B7075;
+  margin-top: 6rpx;
+}
+
+.next-times {
+  color: #C98A1B;
+}
+
+.date-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18rpx 0;
+  border-bottom: 2rpx solid #F3F4F6;
+}
+
+.date-row:last-of-type {
+  border-bottom: none;
+}
+
+.date-info {
+  flex: 1;
+}
+
+.date-title {
+  font-size: 28rpx;
+  color: #2A2E33;
+}
+
+.date-row.is-next .date-title {
+  color: #F0658A;
+  font-weight: 600;
+}
+
+.near {
+  font-size: 20rpx;
+  color: #F0658A;
+  background: #FFE9F0;
+  border-radius: 12rpx;
+  padding: 2rpx 10rpx;
+  margin-left: 10rpx;
+}
+
+/* 每个日子都显示还剩几天，不然只能看到标题 */
+.date-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  flex-shrink: 0;
+  margin: 0 18rpx;
+}
+
+.date-left {
+  font-size: 24rpx;
+  color: #F0658A;
+}
+
+.date-left.past {
+  color: #A6ACB3;
+}
+
+/* 每年循环的日子：旁边再补一个「已经多少天」 */
+.date-since {
+  font-size: 20rpx;
+  color: #A6ACB3;
+  margin-top: 2rpx;
+}
+
+.date-del {
+  font-size: 24rpx;
+  color: #A6ACB3;
+  flex-shrink: 0;
+}
+
+.date-sub {
+  margin-top: 4rpx;
+}
+
+.times {
+  margin-left: 8rpx;
+}
+
+/* 三类日子：累计 / 倒数 / 每年 */
+.mode-tip {
+  margin-top: 26rpx;
+}
+
+.mode-row {
+  display: flex;
+  margin: 14rpx 0 4rpx;
+}
+
+.mode-item {
+  flex: 1;
+  padding: 14rpx 6rpx;
+  border-radius: 14rpx;
+  background: #F7F8FA;
+  margin-right: 12rpx;
+  text-align: center;
+}
+
+.mode-item:last-child {
+  margin-right: 0;
+}
+
+.mode-item.on {
+  background: #FFE9F0;
+}
+
+.mode-name {
+  font-size: 24rpx;
+  color: #2A2E33;
+}
+
+.mode-item.on .mode-name {
+  color: #F0658A;
+  font-weight: 600;
+}
+
+.mode-desc {
+  font-size: 20rpx;
+  color: #A6ACB3;
+  margin-top: 4rpx;
+}
+
+.mode-item.on .mode-desc {
+  color: #F0658A;
+}
+
+.add-btn {
+  margin-top: 20rpx;
+}
+
+.empty {
+  padding: 24rpx 0;
+  line-height: 1.6;
+}
+
+.ev {
+  display: flex;
+  padding: 16rpx 0;
+}
+
+.ev-dot {
+  width: 14rpx;
+  height: 14rpx;
+  border-radius: 50%;
+  margin: 12rpx 20rpx 0 4rpx;
+  flex-shrink: 0;
+  background: #C9CDD2;
+}
+
+.ev-dot.pink {
+  background: #F0658A;
+}
+
+.ev-dot.green {
+  background: #5FC27E;
+}
+
+.ev-dot.purple {
+  background: #A9B8F5;
+}
+
+.ev-dot.orange {
+  background: #F5A623;
+}
+
+.ev-dot.blue {
+  background: #6FA8F5;
+}
+
+.ev-body {
+  flex: 1;
+  border-bottom: 2rpx solid #F7F8FA;
+  padding-bottom: 16rpx;
+}
+
+.ev:last-child .ev-body {
+  border-bottom: none;
+}
+
+.ev-text {
+  font-size: 28rpx;
+  color: #2A2E33;
+}
+
+.ev-time {
+  margin-top: 6rpx;
+}

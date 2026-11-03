@@ -1,0 +1,9 @@
+{
+  "name": "quiz",
+  "version": "1.0.0",
+  "description": "默契问答：取题 / 提交 / 计分",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  }
+}

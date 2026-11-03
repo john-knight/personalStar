@@ -1,0 +1,26 @@
+<view class="page">
+  <view wx:if="{{loading}}" class="loading">加载题目…</view>
+
+  <block wx:if="{{!loading && !waiting}}">
+    <view class="bar">
+      <view class="bar-fill" style="width: {{percent}}%"></view>
+    </view>
+    <view class="q-wrap">
+      <view class="q-index">{{index + 1}} / {{total}}</view>
+      <view class="q-text">{{current.text}}</view>
+      <view class="options">
+        <view wx:for="{{current.options}}" wx:key="idx"
+              class="option {{picked === item.idx ? 'picked' : ''}}"
+              data-idx="{{item.idx}}" bindtap="onPick">{{item.text}}</view>
+      </view>
+    </view>
+  </block>
+
+  <view wx:if="{{waiting}}" class="card wait">
+    <view class="wait-title">答完啦</view>
+    <view class="muted">等 TA 也答完，就能一起看默契报告</view>
+    <view class="code-tip muted small-text">把邀请码 {{code}} 发给 TA</view>
+    <view wx:if="{{local}}" class="btn-primary" bindtap="mockPartner">模拟 TA 答题</view>
+    <view class="btn-ghost wait-btn" bindtap="goCustom">自己出一道题给 TA</view>
+  </view>
+</view>

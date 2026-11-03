@@ -1,0 +1,46 @@
+<view class="page">
+
+  <view class="card">
+    <view class="head">
+      <text class="stat-pill">步数 {{moves}}</text>
+      <text class="stat-pill">{{timeText}}</text>
+      <text wx:if="{{done}}" class="stat-pill done-pill">拼好啦</text>
+    </view>
+
+    <view wx:if="{{!img}}" class="pick" bindtap="pickImage">
+      <view class="pick-icon">🖼️</view>
+      <view class="pick-title">选一张你们的合照</view>
+      <view class="muted pick-sub">切成 3×3，拼完能换爱心币</view>
+    </view>
+
+    <block wx:if="{{img}}">
+      <view class="board" style="width:{{boardPx}}px;height:{{boardPx}}px">
+        <view wx:for="{{tiles}}" wx:key="index"
+              class="cell-img"
+              style="width:{{cellPx}}px;height:{{cellPx}}px;left:{{cellStyles[index].left}}px;top:{{cellStyles[index].top}}px;background-image:url({{img}});background-size:{{boardPx}}px {{boardPx}}px;background-position:{{posList[index]}};"></view>
+        <!-- 透明的点击层压在上面，负责选中高亮与点按 -->
+        <view wx:for="{{tiles}}" wx:key="index"
+              class="cell {{sel === index ? 'sel' : ''}} {{item === index ? 'fit' : ''}}"
+              style="width:{{cellPx}}px;height:{{cellPx}}px;left:{{cellStyles[index].left}}px;top:{{cellStyles[index].top}}px;"
+              data-i="{{index}}"
+              bindtap="tapCell"></view>
+        <view wx:if="{{peeking}}" class="peek" style="background-image:url({{img}});"></view>
+      </view>
+
+      <view class="ops">
+        <view class="btn-ghost" bindtouchstart="peekOn" bindtouchend="peekOff">按住看原图</view>
+        <view class="btn-ghost" bindtap="shuffle">重新打乱</view>
+        <view class="btn-ghost" bindtap="pickImage">换一张</view>
+      </view>
+      <view class="tip muted">点第一块选中，再点另一块交换</view>
+    </block>
+  </view>
+
+  <view wx:if="{{done}}" class="card result">
+    <view class="result-title">拼好啦！</view>
+    <view class="muted">{{moves}} 步 · 用时 {{timeText}}</view>
+    <view wx:if="{{limited}}" class="muted reward">今天这个游戏的奖励次数用完啦，明天再来</view>
+    <view wx:else class="reward">+{{gain}} 爱心币已进星球</view>
+    <view class="btn-primary" bindtap="goHome">回星球</view>
+  </view>
+</view>

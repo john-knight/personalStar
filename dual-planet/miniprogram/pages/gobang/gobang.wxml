@@ -1,0 +1,31 @@
+<view class="page">
+  <view class="card">
+    <view class="head">
+      <view class="turn">{{over ? '本局结束' : '轮到 ' + turnName}}</view>
+      <view class="score-pill">{{scores[0]}} : {{scores[1]}}</view>
+    </view>
+
+    <view class="board-wrap" style="width:{{boardPx}}px;height:{{boardPx}}px">
+      <canvas type="2d" id="board" class="board"
+              style="width:{{boardPx}}px;height:{{boardPx}}px"
+              bindtouchstart="onTouch"></canvas>
+      <view wx:if="{{thinking}}" class="thinking">电脑在想…</view>
+    </view>
+
+    <view class="ops">
+      <view class="btn-ghost" bindtap="undo">悔棋</view>
+      <view class="btn-ghost" bindtap="cycleMode">{{modeText}}</view>
+      <view class="btn-ghost" bindtap="restart">重新开始</view>
+    </view>
+    <view class="tip muted">共 {{steps}} 手</view>
+  </view>
+
+  <view wx:if="{{over}}" class="card center">
+    <view class="over-title">{{overText}}</view>
+    <view class="muted">比分 {{scores[0]}} : {{scores[1]}}</view>
+    <view wx:if="{{limited}}" class="muted reward">今天的奖励次数用完啦</view>
+    <view wx:else class="reward">+{{gain}} 爱心币已进星球</view>
+    <view class="btn-primary" bindtap="restart">再来一局</view>
+    <view class="btn-ghost" bindtap="goHome">回星球</view>
+  </view>
+</view>

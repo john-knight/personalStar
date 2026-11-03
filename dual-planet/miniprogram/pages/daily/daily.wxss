@@ -1,0 +1,85 @@
+.tag {
+  display: inline-block;
+  padding: 4rpx 16rpx;
+  border-radius: 20rpx;
+  background: #FFF1F5;
+  color: #F0658A;
+  font-size: 22rpx;
+  margin-bottom: 16rpx;
+}
+
+.q {
+  font-size: 36rpx;
+  line-height: 1.5;
+  margin-bottom: 12rpx;
+}
+
+.options {
+  margin: 24rpx 0;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 26rpx 28rpx;
+  margin-bottom: 16rpx;
+  border-radius: 16rpx;
+  background: #FFFFFF;
+  border: 2rpx solid #F0F1F3;
+}
+
+.option.picked {
+  border-color: #F0658A;
+  background: #FFF7FA;
+}
+
+.option.ta-pick {
+  border-color: #A9B8F5;
+}
+
+.option.ta-pick:not(.picked) {
+  background: #F7F9FF;
+}
+
+.opt-text {
+  font-size: 28rpx;
+  color: #2A2E33;
+}
+
+.opt-mark {
+  font-size: 22rpx;
+  padding: 2rpx 12rpx;
+  border-radius: 16rpx;
+  margin-left: 12rpx;
+}
+
+.opt-mark.me {
+  background: #F0658A;
+  color: #FFFFFF;
+}
+
+.opt-mark.ta {
+  background: #A9B8F5;
+  color: #FFFFFF;
+}
+
+.result-title {
+  font-size: 32rpx;
+  color: #F0658A;
+  margin-bottom: 8rpx;
+}
+
+.mock-btn {
+  margin-top: 20rpx;
+}
+
+.foot {
+  text-align: center;
+  margin-top: 24rpx;
+}
+
+.empty {
+  padding: 60rpx 0;
+  text-align: center;
+}

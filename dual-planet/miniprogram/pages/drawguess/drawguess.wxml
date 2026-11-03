@@ -1,0 +1,60 @@
+<view class="page">
+  <view class="card">
+    <view class="head">
+      <view class="round">第 {{round + 1}} / {{total}} 回合</view>
+      <view class="score-pill">{{score[0]}} : {{score[1]}}</view>
+    </view>
+
+    <!-- 选词 -->
+    <block wx:if="{{phase === 'ready'}}">
+      <view class="who">{{drawerName}} 来画，{{guesserName}} 先别看</view>
+      <view class="words">
+        <view wx:for="{{choices}}" wx:key="text"
+              class="word-opt {{pickIdx === index ? 'on' : ''}}"
+              data-i="{{index}}" bindtap="pickWord">{{item.text}}</view>
+      </view>
+      <view class="btn-primary" bindtap="startDraw">开始画</view>
+    </block>
+
+    <!-- 画 -->
+    <block wx:if="{{phase === 'drawing'}}">
+      <view class="draw-head">
+        <text class="word-now">要画：{{word.text}}</text>
+        <text class="timer {{left <= 10 ? 'urgent' : ''}}">{{left}}s</text>
+      </view>
+      <canvas type="2d" id="pad" class="pad"
+              style="width:{{padPx}}px;height:{{padPx}}px"
+              bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd"></canvas>
+      <view class="ops">
+        <view class="btn-ghost" bindtap="clearPad">擦掉重画</view>
+        <view class="btn-ghost" bindtap="finishDraw">画好了</view>
+      </view>
+    </block>
+
+    <!-- 猜 -->
+    <block wx:if="{{phase === 'guess'}}">
+      <view class="who">{{guessTitle}}</view>
+      <view class="cands">
+        <view wx:for="{{cands}}" wx:key="*this"
+              class="cand" data-t="{{item}}" bindtap="guessWord">{{item}}</view>
+      </view>
+    </block>
+
+    <!-- 回合结算 -->
+    <block wx:if="{{phase === 'roundResult'}}">
+      <view class="res-title {{roundOk ? 'ok' : 'no'}}">{{roundOk ? '猜对了！' : '没猜中'}}</view>
+      <view class="muted">答案是「{{word.text}}」</view>
+      <view class="btn-primary" bindtap="nextRound">下一回合</view>
+    </block>
+
+    <!-- 总结算 -->
+    <block wx:if="{{phase === 'over'}}">
+      <view class="res-title">{{overText}}</view>
+      <view class="muted">比分 {{score[0]}} : {{score[1]}} · 共猜对 {{score[0] + score[1]}} 次</view>
+      <view wx:if="{{limited}}" class="muted reward">今天的奖励次数用完啦</view>
+      <view wx:else class="reward">+{{gain}} 爱心币已进星球</view>
+      <view class="btn-primary" bindtap="restart">再来一局</view>
+      <view class="btn-ghost" bindtap="goHome">回星球</view>
+    </block>
+  </view>
+</view>

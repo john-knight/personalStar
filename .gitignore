@@ -1,0 +1,10 @@
+# Cocos Creator 生成物
+library/
+temp/
+local/
+build/
+.creator/
+
+# Node
+node_modules/
+package-lock.json

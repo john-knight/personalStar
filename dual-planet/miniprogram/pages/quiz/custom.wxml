@@ -1,0 +1,52 @@
+<view class="page">
+  <view class="card">
+    <view class="head">
+      <text class="big">{{hit}}</text>
+      <text class="muted"> / {{both}} 题猜中</text>
+    </view>
+    <view class="muted small-text">你们一共出了 {{total}} 道题<text wx:if="{{waitMe > 0}}">，还有 {{waitMe}} 道等你答</text></view>
+    <view class="muted small-text tip">这里的题不算进 60 道正式分，也不影响默契榜</view>
+  </view>
+
+  <view wx:if="{{!formOpen}}" class="actions">
+    <view class="btn-primary" bindtap="openForm">出一题给 TA</view>
+  </view>
+
+  <view wx:if="{{formOpen}}" class="card">
+    <view class="card-title">出一道只有你们俩懂的题</view>
+    <input class="q-input" placeholder="题干，比如：我最想去的城市是" maxlength="40"
+           value="{{text}}" bindinput="onText" />
+    <view class="muted small-text hint">选项写具体一点，别写「我」「TA」——两个人理解会不一样</view>
+    <view wx:for="{{options}}" wx:key="index" wx:for-index="i" class="opt-edit">
+      <view class="pick {{choice === i ? 'on' : ''}}" data-i="{{i}}" bindtap="pickMine">{{choice === i ? '✓' : ''}}</view>
+      <input class="opt-input" value="{{item}}" placeholder="选项 {{i + 1}}" maxlength="20"
+             data-i="{{i}}" bindinput="onOption" />
+    </view>
+    <view class="muted small-text hint">点左边的圆圈，表示「这是我的答案」</view>
+    <view class="actions form-actions">
+      <view class="btn-ghost" bindtap="closeForm">算了</view>
+      <view class="btn-primary" bindtap="save">出好了</view>
+    </view>
+  </view>
+
+  <view wx:for="{{list}}" wx:key="id" class="card">
+    <view class="q-head">
+      <text class="q-by">{{item.byText}} 出的</text>
+      <text class="q-state {{item.state}}">{{item.state === 'need' ? '等你答' : (item.state === 'wait' ? '等 TA 答' : (item.state === 'same' ? '想到一块去了' : '不太一样'))}}</text>
+    </view>
+    <view class="q-text">{{item.text}}</view>
+
+    <view wx:if="{{!item.answered}}" class="opts">
+      <view wx:for="{{item.options}}" wx:for-item="op" wx:for-index="oi" wx:key="*this"
+            class="opt" data-id="{{item.id}}" data-i="{{oi}}" bindtap="answer">{{op}}</view>
+    </view>
+    <view wx:else class="opts">
+      <view wx:for="{{item.options}}" wx:for-item="op" wx:for-index="oi" wx:key="*this"
+            class="opt {{item.mine === oi ? 'mine' : ''}} {{item.both && item.ta === oi ? (item.same ? 'mine' : 'ta') : ''}}">{{op}}</view>
+    </view>
+
+    <view wx:if="{{item.byMe}}" class="q-del" data-id="{{item.id}}" bindtap="del">删掉这道题</view>
+  </view>
+
+  <view wx:if="{{!loading && total === 0}}" class="card empty muted">还没有自己出的题。出一道，看看 TA 能猜中几次。</view>
+</view>

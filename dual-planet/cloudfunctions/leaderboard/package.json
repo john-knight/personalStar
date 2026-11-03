@@ -1,0 +1,9 @@
+{
+  "name": "leaderboard",
+  "version": "1.0.0",
+  "description": "默契榜：提交成绩 / 取名次 / 不上榜开关",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  }
+}

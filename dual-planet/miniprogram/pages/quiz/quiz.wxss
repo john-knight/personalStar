@@ -1,0 +1,74 @@
+.loading {
+  text-align: center;
+  color: #8A9099;
+  padding: 120rpx 0;
+}
+
+.bar {
+  height: 6rpx;
+  background: #EEEFF1;
+  margin: 24rpx;
+  border-radius: 3rpx;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  background: #F0658A;
+  transition: width 0.2s;
+}
+
+.q-wrap {
+  margin: 60rpx 32rpx;
+}
+
+.q-index {
+  font-size: 24rpx;
+  color: #A6ACB3;
+  margin-bottom: 20rpx;
+}
+
+.q-text {
+  font-size: 40rpx;
+  line-height: 1.5;
+  margin-bottom: 60rpx;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+}
+
+.option {
+  background: #FFFFFF;
+  border: 2rpx solid #EEEFF1;
+  border-radius: 16rpx;
+  padding: 32rpx;
+  margin-bottom: 20rpx;
+  font-size: 30rpx;
+}
+
+.option.picked {
+  background: #FFF6F8;
+  border-color: #F0658A;
+  color: #F0658A;
+}
+
+.wait {
+  margin: 120rpx 24rpx;
+  text-align: center;
+  padding: 60rpx 32rpx;
+}
+
+.wait-title {
+  font-size: 36rpx;
+  margin-bottom: 12rpx;
+}
+
+.code-tip {
+  margin-top: 20rpx;
+}
+
+.wait .btn-primary {
+  margin-top: 40rpx;
+}
